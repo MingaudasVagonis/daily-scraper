@@ -2,5 +2,5 @@ node_modules/
 
 *.lock
 *.DS_Store
-*.eslintrc
+*.eslintrc.json
 package-lock.json
