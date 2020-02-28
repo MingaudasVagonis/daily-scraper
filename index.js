@@ -5,7 +5,6 @@ const handleImage = require("./image-handler.js");
 const axios = require("axios");
 const cleanDB = require('./delete-collection.js')
 const admin = require("firebase-admin");
-const sizeof = require('object-sizeof')
 
 admin.initializeApp();
 
@@ -50,7 +49,7 @@ exports.checkEvents = functions.region('europe-west1').https.onRequest(async (re
 		saveEvents(todays_ref, events_divided)
 		
 	} catch (err) {
-		res.status(500).json({ error: `Server error: ${err}` });
+		res.status(201).json({ error: `Server error: ${err}` });
 	}
 });
 
@@ -69,7 +68,7 @@ const checkDatabase = async col_ref => {
 
 	/* Map each document in collection */
 	
-	return snapshot.docs.map(doc => doc.data('events'))
+	return flatMap(doc =>  doc.data('events').events),  snapshot.docs)
 };
 
 /**
@@ -234,4 +233,10 @@ const divide = (arr, len) =>{
 
   return chunks;
 }
+
+const concat = (x,y) =>
+  x.concat(y)
+
+const flatMap = (f,xs) =>
+  xs.map(f).reduce(concat, [])
 
