@@ -18,8 +18,7 @@
     "dateformat": "^3.0.3",
     "firebase-admin": "^8.9.2",
     "firebase-functions": "^3.3.0",
-    "jimp": "^0.9.3",
-    "object-sizeof": "^1.5.3"
+    "jimp": "^0.9.3"
   },
   "devDependencies": {
     "eslint": "^5.12.0",
